@@ -52,8 +52,13 @@ export default class EditTodo extends Component {
             todo_responsible: this.state.todo_responsible,
         };
         console.log(obj);
-        axios.post('http://localhost:4000/todos/remove/'+this.props.match.params.id, obj)
-            .then(res => console.log(res.data));
+        axios
+          .post(
+            "http://65bf2007.ngrok.io/todos/remove/" +
+              this.props.match.params.id,
+            obj
+          )
+          .then(res => console.log(res.data));
 
         this.props.history.push('/');
     }

@@ -49,8 +49,9 @@ export default class CreateTodo extends Component {
             todo_responsible: this.state.todo_responsible
         };
 
-        axios.post('http://localhost:4000/todos/add', newTodo)
-            .then(res => console.log(res.data));
+        axios
+          .post("http://65bf2007.ngrok.io/todos/add", newTodo)
+          .then(res => this.props.onAdd(res.data));
 
         this.setState({
             todo_description: '',
@@ -59,7 +60,6 @@ export default class CreateTodo extends Component {
             todo_completed: false
         })
 
-        this.props.history.push('/');
         this.props.history.push('/');
     }
 

@@ -52,25 +52,34 @@ export default class EditTodo extends Component {
             todo_responsible: this.state.todo_responsible,
         };
         console.log(obj);
-        axios.post('http://localhost:4000/todos/update/'+this.props.match.params.id, obj)
-            .then(res => console.log(res.data));
+        axios
+          .post(
+            "http://65bf2007.ngrok.io/todos/update/" +
+              this.props.match.params.id,
+            obj
+          )
+          .then(res => console.log(res.data));
 
         this.props.history.push('/');
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/todos/'+this.props.match.params.id)
-            .then(response => {
-                this.setState({
-                    todo_description: response.data.todo_description,
-                    todo_responsible: response.data.todo_responsible,
-                    todo_priority: response.data.todo_priority,
-                    todo_completed: response.data.todo_completed    
-                })
-            })
-            .catch(function(error){
-                console.log(error);
-            })
+        axios
+          .get(
+            "http://65bf2007.ngrok.io/todos/" +
+              this.props.match.params.id
+          )
+          .then(response => {
+            this.setState({
+              todo_description: response.data.todo_description,
+              todo_responsible: response.data.todo_responsible,
+              todo_priority: response.data.todo_priority,
+              todo_completed: response.data.todo_completed
+            });
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
     }
 
     render() {
